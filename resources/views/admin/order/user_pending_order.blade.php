@@ -15,11 +15,11 @@ pending order
                     order</a>
                 <a href="{{route('order_history')}}" type="button" class="btn btn-info">Order history</a>
 
-                <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <!-- <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="material-icons"></i>Sign Out</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
-                </form>
+                </form> -->
             </div>
 
         </div>
@@ -120,6 +120,8 @@ pending order
         </div>
     </div>
 </section>
+
+<br>
 
 @endsection
 @section('scripts')

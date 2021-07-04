@@ -9,6 +9,8 @@ use DB;
 use App\Logo_Offer;
 use App\Wishlist;
 use App\Category;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -18,9 +20,10 @@ class CartController extends Controller
         $cartCollection = \Cart::getContent();
 		$wishlist = Wishlist::count();
         $nav_category = Category::all();
+		$id = Auth::id();
+        $currentuser = User::find($id);
 
-
-        return view('frontEnd.cart', compact('logo', 'offer', 'cartCollection', 'wishlist', 'nav_category'));
+        return view('frontEnd.cart', compact('logo', 'offer', 'cartCollection', 'wishlist', 'nav_category', 'currentuser'));
     }
 
     public function add(Request$request){

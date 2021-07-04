@@ -119,9 +119,10 @@ class ShippingController extends Controller
         $offer = Logo_Offer::where('logo_offer', '0')->first();
 		$wishlist = Wishlist::count();
         $nav_category = Category::all();
+		$id = Auth::id();
+        $currentuser = User::find($id);
 
-
-		return view('frontEnd.shipping_info', compact('offer', 'logo', 'wishlist', 'nav_category'));
+		return view('frontEnd.shipping_info', compact('offer', 'logo', 'wishlist', 'nav_category', 'currentuser'));
 	}
 
     
@@ -216,9 +217,11 @@ class ShippingController extends Controller
         $offer = Logo_Offer::where('logo_offer', '0')->first();
 		$wishlist = Wishlist::count();
         $nav_category = Category::all();
+		$id = Auth::id();
+        $currentuser = User::find($id);
 
 		Toastr::success('You have successfully ordered your item 🙂' ,'Success');
-		return view('frontEnd.success', compact('offer', 'logo', 'wishlist', 'pinNum', 'user', 'nav_category'));
+		return view('frontEnd.success', compact('offer', 'logo', 'wishlist', 'pinNum', 'user', 'nav_category', 'currentuser'));
     }
 
 	

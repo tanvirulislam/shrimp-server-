@@ -341,6 +341,22 @@ public function pmenu($slug){
             ],200);
     }
 
+    public function wishlist_delete(Request $request, $id){
+
+        $wishlist = Wishlist::find($id);
+        $wishlist->user_id = $request->user_id;
+        $wishlist->product_id = $id;
+        $wishlist->delete();
+
+        // $user_id = $request->user_id;
+        // DB::table('wishlists')->where('product_id', $id)->where('user_id', $user_id)->delete();
+
+        return Response()->json([
+            'wishlist' => $wishlist,
+        ], 200);
+
+    }
+
     public function user_detail($id){
         
         $user_id = DB::table('users')->where('id', $id)->get();
@@ -381,6 +397,27 @@ public function pmenu($slug){
             return response()->json([
                 'orders' => $orders,
                 ],200);
+        }
+
+        public function user_order_detail($id){
+
+            // $user_id = Auth::user()->id;
+      
+            $customer_info = DB::table('main_orders')
+                ->join('users','main_orders.user_id','=','users.id')
+                ->join('shippings','main_orders.shipping_id','=','shippings.id')
+                ->select('main_orders.*','users.name as Username','users.phone as Userphone','shippings.customer_name',
+                'shippings.address','shippings.email','shippings.phone_num','shippings.message')
+                ->where('main_orders.user_id','=',$id)
+                ->first();
+            $order_details = Order::where('user_id','=',$id)->get();
+            $order_total = $order_details->sum('order_total');
+    
+            return response()->json([
+                'customer info' => $customer_info,
+                 'oder details' => $order_details,
+                 'order_total' => $order_total,
+            ]);
         }
         
         

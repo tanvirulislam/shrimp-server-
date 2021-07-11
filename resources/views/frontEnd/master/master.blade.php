@@ -14,7 +14,9 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{asset('/')}}public/frontEnd/css/bootstrap.min.css" />
     <!-- <link rel="stylesheet" href="{{asset('/')}}public/frontEnd/css/font-awesome.min.css" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="{{asset('/')}}public/frontEnd/css/flaticon.css" /> -->
     <link rel="stylesheet" href="{{asset('/')}}public/frontEnd/css/slicknav.min.css" />
     <link rel="stylesheet" href="{{asset('/')}}public/frontEnd/css/jquery-ui.min.css" />
@@ -32,9 +34,9 @@
     <link rel="apple-touch-icon-precomposed"
         href="{{asset('/')}}public/frontEnd/images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
+
 </head>
 
 <body>
@@ -93,7 +95,7 @@
     @endforeach
     @endif
     </script>
-    
+
     <script>
     $(document).ready(function() {
         $(".search_icon").click(function() {
@@ -101,5 +103,11 @@
         });
     });
     </script>
-    
+
+    <script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+
 </body>

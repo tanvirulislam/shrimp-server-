@@ -21,11 +21,11 @@ DESH BANGLA FISH & SHRIMP
                         <!--<a href="#" class="site-btn sb-white">ADD TO CART</a>-->
                     </div>
                 </div>
-                <div class="offer-card text-white">
+                <a href="#" class="offer-card text-white">
                     <span>from</span>
                     <h3>TK 150</h3>
                     <p>SHOP NOW</p>
-                </div>
+                </a>
             </div>
         </div>
         @endforeach
@@ -84,7 +84,7 @@ DESH BANGLA FISH & SHRIMP
         <div class="product-slider owl-carousel">
             @foreach($feature_item as $item)
             <div class="product-item">
-                <div class="pi-pic">
+                <div class="pi-pic product-design">
                     <img src="{{asset('/')}}{{$item->image}}" alt="image">
                     <div class="pi-links">
 
@@ -98,10 +98,12 @@ DESH BANGLA FISH & SHRIMP
                             <input type="hidden" id="quantity" name="quantity"
                                 class="quantity form-control input-number" value="1" min="1" max="100">
 
-                           <button type="submit" class="add-card"><i class="fa fa-shopping-cart"></i>
-                                <span >ADD TO CART</span></button>
+                            <button type="submit" class="add-card"><i class="fa fa-shopping-cart"></i>
+                                <span>ADD TO CART</span></button>
 
-                            <a href="{{route('wishlist', $item->product_slug)}}" class="wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            <a href="{{route('wishlist', $item->product_slug)}}" class="wishlist-btn"
+                                data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart"
+                                    aria-hidden="true"></i></a>
                         </form>
 
                         <!-- <a href="#" class="add-card"> <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>ADD TO
@@ -111,7 +113,7 @@ DESH BANGLA FISH & SHRIMP
                 </div>
                 <div class="pi-text">
                     <div class="row">
-                        <div class="col-md-5 col-5" >
+                        <div class="col-md-5 col-5">
                             <h6>{{$item->name}} </h6>
 
                         </div>
@@ -145,7 +147,7 @@ DESH BANGLA FISH & SHRIMP
             @foreach ($feature_item->shuffle()->take(8) as $item)
             <div class="col-lg-3 col-sm-6">
                 <div class="product-item">
-                    <div class="pi-pic">
+                    <div class="pi-pic product-design">
                         <img src="{{asset('/')}}{{$item->image}}" alt="image">
                         <div class="pi-links">
                             <form action="{{ route('cart.store') }}" method="POST">
@@ -159,8 +161,10 @@ DESH BANGLA FISH & SHRIMP
                                     class="quantity form-control input-number" value="1" min="1" max="100">
 
                                 <button type="submit" class="add-card"><i class="fa fa-shopping-cart"></i>
-                                <span >ADD TO CART</span></button>
-                                <a href="{{route('wishlist', $item->product_slug)}}" class="wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                    <span>ADD TO CART</span></button>
+                                <a href="{{route('wishlist', $item->product_slug)}}" class="wishlist-btn"
+                                    data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart"
+                                        aria-hidden="true"></i></a>
                             </form>
 
                         </div>
@@ -183,7 +187,7 @@ DESH BANGLA FISH & SHRIMP
             @endforeach
         </div>
         <div class="text-center">
-            <a href="{{route('all_products')}}" class="site-btn sb-line sb-dark">LOAD MORE</a>
+            <a href="{{route('all_products')}}" class="site-btn sb-line sb-dark">SEE ALL</a>
         </div>
     </div>
 </section>

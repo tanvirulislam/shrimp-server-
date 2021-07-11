@@ -399,9 +399,9 @@ public function pmenu($slug){
                 ],200);
         }
 
-        public function user_order_detail($id){
+        public function user_order_detail(Request $request, $id){
 
-            // $user_id = Auth::user()->id;
+            $order_id = $request->order_id;
       
             $customer_info = DB::table('main_orders')
                 ->join('users','main_orders.user_id','=','users.id')
@@ -410,7 +410,7 @@ public function pmenu($slug){
                 'shippings.address','shippings.email','shippings.phone_num','shippings.message')
                 ->where('main_orders.user_id','=',$id)
                 ->first();
-            $order_details = Order::where('user_id','=',$id)->get();
+            $order_details = Order::where('order_id','=',$order_id)->get();
             $order_total = $order_details->sum('order_total');
     
             return response()->json([

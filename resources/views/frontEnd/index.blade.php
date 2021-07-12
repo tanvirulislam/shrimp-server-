@@ -162,7 +162,7 @@ DESH BANGLA FISH & SHRIMP
 
                                 <button type="submit" class="add-card"><i class="fa fa-shopping-cart"></i>
                                     <span>ADD TO CART</span></button>
-                                <a href="{{route('wishlist', $item->product_slug)}}" class="wishlist-btn"
+                                <a href="{{route('wishlist', $item->id)}}" class="wishlist-btn"
                                     data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart"
                                         aria-hidden="true"></i></a>
                             </form>

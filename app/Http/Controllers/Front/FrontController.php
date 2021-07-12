@@ -167,7 +167,7 @@ class FrontController extends Controller
 
         $user_id = Auth::user()->id;
         $all_wishlist = DB::table('wishlists')
-        ->join('products','products.product_slug','=','wishlists.product_id')
+        ->join('products','products.id','=','wishlists.product_id')
         ->select('products.*','wishlists.product_id')
         ->where('user_id', $user_id)
         ->get();

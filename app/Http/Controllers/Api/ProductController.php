@@ -228,11 +228,6 @@ public function pmenu($slug){
     }
     
        public function product_detail($id){
-        
-        // $slug = substr($product_slug,3);
-        
-        //dd($slug);
-        
            
             $products = DB::table('products')->where('id', $id)->first();
             $related_fish = Product::all();
@@ -242,7 +237,6 @@ public function pmenu($slug){
                 'products' => $products,
                 'related_fish' => $related_fish,
                
-                
                 ],200);
         
     }
@@ -312,7 +306,7 @@ public function pmenu($slug){
 
     public function wishlist_store(Request $request, $user_id){
         
-        // $user_id = Auth::user()->id;
+       
         $wishlist = new Wishlist();
         $wishlist->user_id = $user_id;
         $wishlist->product_id = $request->product_id;
@@ -326,10 +320,10 @@ public function pmenu($slug){
 
     public function wishlist_detail($user_id){
 
-        // $user_id = Auth::user()->id;
+       
         $all_wishlist = DB::table('wishlists')
-        ->join('products','products.product_slug','=','wishlists.product_id')
-        ->select('products.*','wishlists.product_id')
+        ->join('products','products.id','=','wishlists.product_id')
+        ->select('products.*','wishlists.*')
         ->where('user_id', $user_id)
         ->get();
 
@@ -341,18 +335,13 @@ public function pmenu($slug){
             ],200);
     }
 
-    public function wishlist_delete(Request $request, $id){
+    public function wishlist_delete($id){
 
-        $wishlist = Wishlist::find($id);
-        $wishlist->user_id = $request->user_id;
-        $wishlist->product_id = $id;
-        $wishlist->delete();
-
-        // $user_id = $request->user_id;
-        // DB::table('wishlists')->where('product_id', $id)->where('user_id', $user_id)->delete();
+        $cart = Wishlist::find($id);
+        $cart->delete();
 
         return Response()->json([
-            'wishlist' => $wishlist,
+            'wishlist' => 'Successfully deleted',
         ], 200);
 
     }

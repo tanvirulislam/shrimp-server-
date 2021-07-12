@@ -43,7 +43,7 @@ Route::get('/clear', function() {
     Route::post('/cart/clear', 'Front\CartController@clear')->name('cart.clear');
 
     // wishlist
-    Route::get('/wishlist/{product_slug}', 'Front\FrontController@wishlist')->name('wishlist');
+    Route::get('/wishlist/{id}', 'Front\FrontController@wishlist')->name('wishlist');
     Route::get('wishlist-detail', 'Front\FrontController@wishlist_detail')->name('wishlist_detail');
     Route::get('wishlist/customer/login', 'Front\FrontController@wishlist_customer_login')->name('wishlist_customer_login');
 

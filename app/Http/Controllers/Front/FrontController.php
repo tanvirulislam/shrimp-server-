@@ -54,7 +54,8 @@ class FrontController extends Controller
         
         $cat_wise_product = DB::table('products')->latest()->limit(7)->get();
         $category_fish_second = Category:: latest()->skip(1)->take(2)->get();
-		$wishlist = Wishlist::count();
+		
+        $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
 
 
         return view('frontEnd.index', compact('logo', 'banner', 'bannersecond', 'feature_item',
@@ -66,15 +67,15 @@ class FrontController extends Controller
     }
 
     public function all_products(){
-
+        
+        $id = Auth::id();
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-		$wishlist = Wishlist::count();
+		$wishlist = DB::table('wishlists')->where('user_id', $id)->count();
         $nav_category = Category::all();
         $category_fish = Category::all();
         $cat_wise_product = DB::table('products')->latest()->limit(7)->get();
         $cat_wise_all_product = DB::table('categories')->first();
-        $id = Auth::id();
         $currentuser = User::find($id);
 
         return view('frontEnd.category_wise_product', compact( 'logo','offer', 'wishlist', 'cat_wise_product', 'category_fish',
@@ -85,13 +86,14 @@ class FrontController extends Controller
 
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-        $wishlist = Wishlist::count();
         $nav_category = Category::all();
         $category_fish = Category::where('slug', $id)->get();
         $cat_wise_product = DB::table('products')->latest()->limit(7)->get();
         $cat_wise_product_all = DB::table('products')->latest()->get();
         $id = Auth::id();
         $currentuser = User::find($id);
+        $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
+
 
         return view('frontEnd.category_wise_all_product', compact('category_fish', 'logo', 'offer', 'cat_wise_product',
     'cat_wise_product_all', 'wishlist', 'nav_category', 'currentuser'));
@@ -101,7 +103,7 @@ class FrontController extends Controller
 
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-		$wishlist = Wishlist::count();
+	
         $nav_category = Category::all();
         $category_fish = Category::all();
         $cat_wise_product = DB::table('products')->latest()->limit(7)->get();
@@ -109,6 +111,8 @@ class FrontController extends Controller
         $related_fish = Product::all();
         $id = Auth::id();
         $currentuser = User::find($id);
+        $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
+
 
         return view('frontEnd.product_details', compact('logo', 'offer', 'category_fish',
          'cat_wise_product', 'products', 'wishlist', 'related_fish', 'nav_category', 'currentuser'));
@@ -120,7 +124,8 @@ class FrontController extends Controller
     public function wishlist_customer_login() {
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-        $wishlist = Wishlist::count();
+        $id = Auth::id();
+        $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
         $nav_category = Category::all();
 
         Toastr::info('Please Login First 🙂' ,'Info');
@@ -162,7 +167,9 @@ class FrontController extends Controller
     public function wishlist_detail(){
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-        $wishlist = Wishlist::count();
+        $id = Auth::id();
+        $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
+
         $nav_category = Category::all();
 
         $user_id = Auth::user()->id;
@@ -184,7 +191,9 @@ class FrontController extends Controller
     public function customer_dashoard(){
 		$logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-        $wishlist = Wishlist::count();
+        $id = Auth::user()->id;
+        $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
+
         $nav_category = Category::all();
 
         
@@ -194,7 +203,9 @@ class FrontController extends Controller
      public function search(Request $request){
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-        $wishlist = Wishlist::count();
+       $id = Auth::id();
+       $wishlist = DB::table('wishlists')->where('user_id', $id)->count();
+
         $nav_category = Category::all();
         // Get the search value from the request
         $search = $request->search;

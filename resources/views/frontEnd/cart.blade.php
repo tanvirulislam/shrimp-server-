@@ -47,7 +47,8 @@ DESH BANGLA FISH & SHRIMP
                     <div class="row">
 
                         <div class="col-md-3 col-3">
-                            <img src="{{ $item->attributes->image }}" class="img-thumbnail" alt="image" width="200 px" height="200 px">
+                            <img src="{{ $item->attributes->image }}" class="img-thumbnail" alt="image" width="200 px"
+                                height="200 px">
                         </div>
                         <div class="col-md-6 col-6">
                             <div class="pc-title">
@@ -63,27 +64,26 @@ DESH BANGLA FISH & SHRIMP
                                 <form action="{{ route('cart.remove') }}" method="POST" class="form-inline">
                                     @csrf
                                     <input type="hidden" value="{{ $item->id }}" id="id" name="id">
-                                    <button style="margin-left: -14px;background: transparent; border: none; color: black;" class="btn btn-primary py-2 px-3"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <button
+                                        style="margin-left: -14px;background: transparent; border: none; color: black;"
+                                        class="btn btn-primary py-2 px-3"><i class="fa fa-times"
+                                            aria-hidden="true"></i></button>
                                 </form>
                                 <p>{{$item->price}} </p>
                                 <form action="{{ route('cart.update') }}" method="POST" class="form-inline">
                                     {{ csrf_field() }}
                                     <div class="form-group">
 
-                                        <!-- <div class="quy-col">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="hidden" value="{{ $item->id}}" id="id" name="id">
-                                            <input type="text" value="{{ $item->quantity }}" id="quantity" name="quantity">
-                                        </div>
-                                    </div>
-                                </div> -->
+
 
                                         <input type="hidden" value="{{ $item->id}}" id="id" name="id">
-                                        <input type="number" class="form-control form-control-sm cart-input-field" value="{{ $item->quantity }}" id="quantity" name="quantity" style="width:70px;">
+                                        <input type="number" class="form-control form-control-sm cart-input-field"
+                                            value="{{ $item->quantity }}" id="quantity" name="quantity"
+                                            style="width:70px;">
                                     </div>
                                     &nbsp;
-                                    <button style=" color: #000000; background: transparent; border: none;" class="btn btn-primary cart-update-btn">
+                                    <button style=" color: #000000; background: transparent; border: none;"
+                                        class="btn btn-primary cart-update-btn">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                 </form>
@@ -95,9 +95,15 @@ DESH BANGLA FISH & SHRIMP
                     <br>
                     <div class="row">
                         <div class="col-md-6 col-6">
-                            <p>Total <span>(including vat)</span> </p>
+                            @if(count($cartCollection)>0)
+                            <form action="{{ route('cart.clear') }}" method="POST">
+                                {{ csrf_field() }}
+                                <button class="site-btn">Clear Cart</button>
+                            </form>
+                            @endif
                         </div>
                         <div class="col-md-6 col-6">
+                            <p>Total <span>(including vat)</span> </p>
                             <h6>Total <span>BDT. {{ \Cart::getTotal() }}</span></h6>
                         </div>
                     </div>
@@ -108,7 +114,7 @@ DESH BANGLA FISH & SHRIMP
                     <input type="text" placeholder="Enter promo code">
                     <button>Submit</button>
                 </form>
-               
+
                 @if(count($cartCollection)>0)
                 <a href="{{ route('index') }}" style="margin-top: inherit;" class="site-btn">Continue
                     Shopping</a>

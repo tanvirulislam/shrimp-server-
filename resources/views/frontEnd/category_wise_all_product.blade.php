@@ -150,7 +150,7 @@ DESH BANGLA FISH & SHRIMP
                                     <div class="pi-links">
                                         <form  action="{{ route('cart.store') }}" method="POST">
                                             {{ csrf_field() }}
-                                            <input type="hidden" value="{{ $cat_product->product_slug }}" id="id"
+                                            <input type="hidden" value="{{ $cat_product->id }}" id="id"
                                                 name="id">
                                             <input type="hidden" value="{{ $cat_product->name }}" id="name" name="name">
                                             <input type="hidden" value="{{ $cat_product->sell_price }}" id="price"

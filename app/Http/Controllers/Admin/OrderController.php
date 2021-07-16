@@ -98,8 +98,7 @@ class OrderController extends Controller
 
     public function order_history(){
       $order_history = Auth::user()->id;
-      $wishlist = DB::table('wishlists')->where('user_id', $order_history)->count();
-
+ $wishlist = DB::table('wishlists')->where('user_id', $order_history)->count();
       $orders =DB::table('main_orders')
       ->join('users','main_orders.user_id','=','users.id')
       ->join('shippings','main_orders.shipping_id','=','shippings.id')
@@ -111,7 +110,7 @@ class OrderController extends Controller
       $status=Order::all();
       $logo = Logo_Offer::where('logo_offer', '1')->first();
       $offer = Logo_Offer::where('logo_offer', '0')->first();
-      
+    //   $wishlist = Wishlist::count();
       $nav_category = Category::all();
       $id = Auth::id();
       $currentuser = User::find($id);
@@ -125,6 +124,7 @@ class OrderController extends Controller
     
     public function user_pending_order(){
       $order_history = Auth::user()->id;
+       $wishlist = DB::table('wishlists')->where('user_id', $order_history)->count();
       $orders =DB::table('main_orders')
       ->join('users','main_orders.user_id','=','users.id')
       ->join('shippings','main_orders.shipping_id','=','shippings.id')
@@ -136,8 +136,7 @@ class OrderController extends Controller
         $status=Order::all();
         $logo = Logo_Offer::where('logo_offer', '1')->first();
         $offer = Logo_Offer::where('logo_offer', '0')->first();
-        $wishlist = DB::table('wishlists')->where('user_id', $order_history)->count();
-
+        // $wishlist = Wishlist::count();
         $nav_category = Category::all();
         $id = Auth::id();
         $currentuser = User::find($id);
@@ -150,8 +149,8 @@ class OrderController extends Controller
 
     public function user_order_detail($id){
       $order_history = Auth::user()->id;
-      $wishlist = DB::table('wishlists')->where('user_id', $order_history)->count();
-
+ $wishlist = DB::table('wishlists')->where('user_id', $order_history)->count();
+ 
     	$order = DB::table('main_orders')
                     ->join('users','main_orders.user_id','=','users.id')
                     ->join('shippings','main_orders.shipping_id','=','shippings.id')
@@ -161,7 +160,7 @@ class OrderController extends Controller
            $details = Order::where('order_id','=',$id)->get();
            $logo = Logo_Offer::where('logo_offer', '1')->first();
            $offer = Logo_Offer::where('logo_offer', '0')->first();
-      
+    //   $wishlist = Wishlist::count();
        $nav_category = Category::all();
        $id = Auth::id();
         $currentuser = User::find($id);

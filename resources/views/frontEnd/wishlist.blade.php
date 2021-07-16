@@ -19,7 +19,7 @@ Wishlist | Fish & Shrimp E-commerce
                         <div class="pi-links">
                             <form action="{{ route('cart.store') }}" method="POST">
                                 {{ csrf_field() }}
-                                <input type="hidden" value="{{ $item->product_slug }}" id="id" name="id">
+                                <input type="hidden" value="{{ $item->id }}" id="id" name="id">
                                 <input type="hidden" value="{{ $item->name }}" id="name" name="name">
                                 <input type="hidden" value="{{ $item->sell_price }}" id="price" name="price">
                                 <input type="hidden" value="{{ $item->image }}" id="img" name="img">

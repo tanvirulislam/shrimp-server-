@@ -228,6 +228,11 @@ public function pmenu($slug){
     }
     
        public function product_detail($id){
+        
+        // $slug = substr($product_slug,3);
+        
+        //dd($slug);
+        
            
             $products = DB::table('products')->where('id', $id)->first();
             $related_fish = Product::all();
@@ -237,6 +242,7 @@ public function pmenu($slug){
                 'products' => $products,
                 'related_fish' => $related_fish,
                
+                
                 ],200);
         
     }
@@ -283,7 +289,7 @@ public function pmenu($slug){
                 $order= new Order();
                 $order->user_id = $userId;
                 $order->shipping_id =  $shippingId;
-                $order->product_id = $cartProduct->id;
+                $order->product_id = $cartProduct->product_id;
                 $order->order_id = $orderId;
                 $order->product_name = $cartProduct->name;
                 $order->product_price = $cartProduct->price;
@@ -306,7 +312,7 @@ public function pmenu($slug){
 
     public function wishlist_store(Request $request, $user_id){
         
-       
+        // $user_id = Auth::user()->id;
         $wishlist = new Wishlist();
         $wishlist->user_id = $user_id;
         $wishlist->product_id = $request->product_id;
@@ -320,7 +326,7 @@ public function pmenu($slug){
 
     public function wishlist_detail($user_id){
 
-       
+        // $user_id = Auth::user()->id;
         $all_wishlist = DB::table('wishlists')
         ->join('products','products.id','=','wishlists.product_id')
         ->select('products.*','wishlists.*')
@@ -335,10 +341,18 @@ public function pmenu($slug){
             ],200);
     }
 
-    public function wishlist_delete($id){
+    public function wishlist_delete(Request $request, $id){
 
-        $cart = Wishlist::find($id);
-        $cart->delete();
+            $wishlist = Wishlist::find($id);
+            $wishlist->delete();
+            
+        // $wishlist = Wishlist::find($id);
+        // $wishlist->user_id = $request->user_id;
+        // $wishlist->product_id = $id;
+        // $wishlist->delete();
+
+        // $user_id = $request->user_id;
+        // DB::table('wishlists')->where('product_id', $id)->where('user_id', $user_id)->delete();
 
         return Response()->json([
             'wishlist' => 'Successfully deleted',

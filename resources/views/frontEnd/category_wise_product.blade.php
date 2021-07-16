@@ -149,7 +149,7 @@ DESH BANGLA FISH & SHRIMP
                                     <div class="pi-links">
                                         <form  action="{{ route('cart.store') }}" method="POST">
                                             {{ csrf_field() }}
-                                            <input type="hidden" value="{{ $cat_product->product_slug }}" id="id"
+                                            <input type="hidden" value="{{ $cat_product->id }}" id="id"
                                                 name="id">
                                             <input type="hidden" value="{{ $cat_product->name }}" id="name" name="name">
                                             <input type="hidden" value="{{ $cat_product->sell_price }}" id="price"
@@ -190,7 +190,7 @@ DESH BANGLA FISH & SHRIMP
                     @endforeach
                     <div class=" w-100 pt-3 mb-5">
                         <a href="{{route('cat_wise_all_product', $category->slug)}}"
-                            class="site-btn sb-line sb-dark">LOAD MORE</a>
+                            class="site-btn sb-line sb-dark">SEE ALL</a>
                     </div>
 
 

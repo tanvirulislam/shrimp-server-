@@ -1116,6 +1116,12 @@ ol {
 	width: 100%;
 	padding: 10px 34px;
 	border-radius: 31px;
+	transition: .3s;
+}
+
+.product-filter-menu li a:hover{
+	color: #fff;
+	background-color: #2c976b;
 }
 
 /* ----------------
